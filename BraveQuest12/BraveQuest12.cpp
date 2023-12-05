@@ -6,11 +6,19 @@
 #include"Brave.h"
 #include"Zombie.h"
 using namespace std;
+char* nameGet()
+{
+	cout << "名前を入力して下さい。" << endl;
+	char* name;
+	name = new char[50];
+	cin >> name;
+	return name;
+}
 int main()
 {
 	srand((unsigned int)time(NULL));
-	Brave brave;
-	Zombie zombie;
+	Brave brave(nameGet());
+	Zombie zombie("ゾンビ");
 	Battle battle;
 	battle.battleStart(brave, zombie);
 }

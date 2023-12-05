@@ -2,10 +2,12 @@
 #include"brave.h"
 using namespace std;
 
-Brave::Brave()
+Brave::Brave() : Character("勇者")
 {
-	cout << "ゲームを開始します" << endl;
-	name = "勇者";
+
+}
+Brave::Brave(const char* name):Character(name)
+{
 	state[HP] = 30;
 	state[NP] = 19;
 	state[POW] = 15;
@@ -18,10 +20,14 @@ Brave::Brave()
 	SkillCheck[Dein] = true;
 
 }
+Brave::~Brave()
+{
+
+}
 
 int Brave::attac()
 {
-	cout <<name<<"の行動を選択してください。" << endl;
+	cout <<_pName<<"の行動を選択してください。" << endl;
 	for (int i = 0; i < 5; i++)
 	{
 		if (SkillCheck[i] == true)

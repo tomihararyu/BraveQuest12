@@ -2,10 +2,13 @@
 #include"Zombie.h"
 using namespace std;
 
-Zombie::Zombie()
+Zombie::Zombie() : Character("ƒ]ƒ“ƒr")
 {
-	cout << "ƒ]ƒ“ƒr‚Ì¶¬" << endl;
-	name = "ƒ]ƒ“ƒr" ;
+
+}
+
+Zombie::Zombie(const char* name) : Character(name)
+{
 	state[HP] = 60;
 	state[NP] = 10;
 	state[POW] = 20;
@@ -16,6 +19,10 @@ Zombie::Zombie()
 	SkillCheck[Taiatari] = true;
 	SkillCheck[Haner] = true;
 	SkillCheck[Poizn] = true;
+
+}
+Zombie::~Zombie()
+{
 
 }
 int Zombie::attac()

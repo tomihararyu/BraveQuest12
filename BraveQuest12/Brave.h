@@ -3,7 +3,9 @@
 class Brave :public Character
 {
 public:
-	Brave();//コンストラクタでステータスを追加。
+	Brave();
+	Brave(const char* name);//コンストラクタでステータスを追加。
+	virtual ~Brave();
 public:
 	int attac();
 

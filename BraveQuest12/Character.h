@@ -2,8 +2,12 @@
 class Character
 {
 
+
 public:
-	string name;//‚Ç‚¤‚µ‚æ‚¤‚à‚È‚©‚Á‚½
+	char* _pName;	// –¼‘O
+
+	Character(const char* pName);
+	virtual ~Character();
 
 protected:
 	int state[6];
@@ -35,6 +39,6 @@ public:
 	int SpeedCheck();
 	void DamageTrade(int Damege);
 	void stateOpen();
-
+	const char* getName() const;
 
 };

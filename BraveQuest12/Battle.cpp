@@ -12,12 +12,11 @@ void Battle::battleStart(Brave& brave, Zombie& zombe)
 {
 	for (;;)
 	{
-		cout << "ゾンビのステータス" << endl;
+		cout << zombe.getName() << "のステータス" << endl;
 		zombe.stateOpen();
 		cout << endl;
-		cout << "勇者のステータス" << endl;
+		cout << brave.getName() << "のステータス" << endl;
 		brave.stateOpen();
-
 		
 		if (brave.SpeedCheck() >= zombe.SpeedCheck());
 		{
@@ -25,29 +24,27 @@ void Battle::battleStart(Brave& brave, Zombie& zombe)
 			zombe.DamageTrade(brave.attac());
 			next();
 			cout << endl;
-			cout << "ゾンビの" << endl;
 			brave.DamageTrade(zombe.attac());
 			next();
 		}
 		if (brave.SpeedCheck() <= zombe.SpeedCheck())
 		{
-			cout << "ゾンビの" << endl;
+
 			brave.DamageTrade(zombe.attac());
 			next();
 			cout << endl;
-			cout << "勇者のターン" << endl;
 			zombe.DamageTrade(brave.attac());
 		}
 
 
 		if (brave.GetHP() <= 0)
 		{
-			cout << "ゾンビの勝利" << endl;
+			cout << zombe.getName() << "の勝利" << endl;
 			break;
 		}
 		else if(zombe.GetHP() <=0)
 		{
-			cout << "勇者の勝利" << endl;
+			cout << brave.getName() << "の勝利" << endl;
 			break;
 		}
 	}
