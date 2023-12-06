@@ -18,10 +18,16 @@ int main()
 {
 	srand((unsigned int)time(NULL));
 	Brave brave(nameGet());
-	Zombie zombie("ゾンビ");
+	Zombie* pzombie;
+	pzombie = new Zombie;
+	
 	Battle battle;
-	battle.battleStart(brave, zombie);
+	battle.battleStart(brave, pzombie);
+
+	delete pzombie;
+	
 }
+//次にやることリスト
 
 // プログラムの実行: Ctrl + F5 または [デバッグ] > [デバッグなしで開始] メニュー
 // プログラムのデバッグ: F5 または [デバッグ] > [デバッグの開始] メニュー

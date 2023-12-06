@@ -1,4 +1,5 @@
 #pragma once
+#include"common.h"
 class Character
 {
 
@@ -14,19 +15,16 @@ protected:
 	const char* stateNam[6] = {
 	"HP",//体力
 	"NP",//マジックポイント
-	"パワー",//筋肉
-	"INT"//頭のよさ
+	"筋肉",//筋肉
+	"頭脳",//頭のよさ
 	"防御力",
-	"敏捷"};//防御力
+	"行動値"};
 
 protected:
 
 	const char* skillCharNam[5] = {"体当たり","ホイミ","跳ねる","毒霧","デイソ"};//全キャラ共通のスキル
 	const int skillChar[5] = { 0,5,3,2,5 };
 	bool SkillCheck[5] = { false };
-
-	const int HP=0, NP=1, POW=2, INT=3, DF=4, DEX=5;
-	const int Taiatari=0, Hoim=1, Haner=2, Poizn=3, Dein=4;
 protected:
 	int taiatari();
 	void hoimi();
@@ -38,7 +36,8 @@ public:
 	int GetHP();
 	int SpeedCheck();
 	void DamageTrade(int Damege);
-	void stateOpen();
+	void AllstateOpen();
+	void SubStateOpen();
 	const char* getName() const;
 
 };

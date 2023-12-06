@@ -27,19 +27,9 @@ void Character::DamageTrade(int Damege)
 {
 	if (Damege != 0)
 	{
-		if (0 != Damege - Damege / 100 * 100)
-		{
-			static int TurnContinuation = Damege - Damege / 100 * 100;
-			if (0 != TurnContinuation)
-			{
-
-				static int DamegeContinuation = Damege / 100;
-				cout << "継続ダメージで" << DamegeContinuation << "ダメージ入ります" << endl;
-				state[HP] -= DamegeContinuation;
-			}
-		}
-		state[HP] -= (Damege/100 - state[DF]);
-		cout << Damege - state[DF] << " ダメージ!!  "<<_pName <<"のHPが" << Damege - state[DF] << "減った" << endl;
+		const int timp = (Damege - state[DF]) + rand() % 3;
+		cout <<timp << " ダメージ!!  "<<_pName <<"のHPが" << state[HP] << "が"<<timp<<"減って"<<state[HP]-timp<<"になった" << endl;
+		state[HP] -= timp;
 	}
 	
 }
@@ -49,15 +39,15 @@ int Character::SpeedCheck()
 }
 int Character::taiatari()
 {
-	cout << _pName <<"の体当たり!! 衝撃で" << _pName <<"のHPが"<<2<<"減った" << endl;
+	cout << _pName <<"の体当たり!! 衝撃で" << _pName <<"のHPが"<<2<<"減った\n" << endl;
 	state[HP] -= 2;
-	return 10 + state[POW]*100;
+	return 6 + state[POW];
 	
 }
 void Character::hoimi()
 {
-	state[HP] +=2 * state[INT] / 10;
-	state[NP] -= skillChar[Hoim];
+	state[HP] += 2 * state[INT] / 10;
+	state[NP] -= skillChar[HOIM];
 	cout << _pName <<"の回復!!" << endl;
 	cout << _pName <<"の" << stateNam[HP] << "が" << 2 * state[INT] / 10 << "回復した" << endl;
 }
@@ -70,27 +60,39 @@ void Character::haner()
 int Character::poison()
 {
 	cout << _pName <<"の毒霧!!\n毒霧を吐いた"<<endl;
-	state[NP] - skillChar[Poizn];
-	return 23*100+3;
+	state[NP] -= skillChar[POIZN];
+	return 23;
 
 }
 int Character::dein()
 {
 	cout << _pName <<"のデイン!!" << endl;
-	state[NP] - skillChar[Dein];
-	return 12 + state[INT]*100;
+	state[NP] -= skillChar[DEIN];
+	return 10 + state[INT];
 
 }
 int Character::GetHP()
 {
 	return state[HP];
 }
-void Character::stateOpen()
+void Character::AllstateOpen()
 {
-	for (int i = 0; i < 5; i++)
+	cout << "====================" << endl;
+	cout << _pName<<":: ";
+	for (int i = 0; i <= 5; i++)
 	{
-		cout << stateNam[i] << "=" << state[i]<<" ";
+		cout << stateNam[i] << "=" << state[i] << " ";
 	}
-	cout << endl;
+	cout << "\n====================" << endl;
+}
+void Character::SubStateOpen()
+{
+	cout << "====================" << endl;
+	cout << _pName << ":: ";
+	for (int i = 0; i <= 1; i++)
+	{
+		cout << stateNam[i] << "=" << state[i] << " ";
+	}
+	cout << "\n====================" << endl;
 }
 

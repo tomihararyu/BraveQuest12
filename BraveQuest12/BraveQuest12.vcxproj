@@ -152,6 +152,7 @@
     <ClInclude Include="Battle.h" />
     <ClInclude Include="Brave.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="common.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="Zombie.h" />
   </ItemGroup>
