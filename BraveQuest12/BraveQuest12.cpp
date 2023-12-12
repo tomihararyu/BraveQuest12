@@ -12,17 +12,20 @@ char* nameGet()
 	char* name;
 	name = new char[50];
 	cin >> name;
+	cout << "名前設定完了" << endl;
 	return name;
 }
 int main()
 {
-	srand((unsigned int)time(NULL));
-	Brave brave(nameGet());
-	Zombie* pzombie;
+	srand((unsigned int)time(nullptr));
+
+	Zombie* pzombie;//ここで宣言するのは確定で出現させるモンスターのみ。battle関数内で他のモンスターを確率によって増やしてclassを生成
 	pzombie = new Zombie;
+	Brave brave(nameGet());
+
 	
 	Battle battle;
-	battle.battleStart(brave, pzombie);
+	battle.battleStart(brave, pzombie);//出現させるモンスターの数は送ってもいいかも
 
 	delete pzombie;
 	
@@ -33,6 +36,7 @@ int main()
 //名前やステータス設定を細かく
 //勝敗判定の変更
 //可読性を上げる
+//enemi関数を作る
 
 
 //そのうちやりたいことリスト
@@ -42,7 +46,8 @@ int main()
 //ある程度のストリー
 //テイム
 //敗北時の教会
-//もう少し見やすくする
+//スキルを増やす
+//自動でモンスターを生成＆playerの成長に併せて強化
 
 // プログラムの実行: Ctrl + F5 または [デバッグ] > [デバッグなしで開始] メニュー
 // プログラムのデバッグ: F5 または [デバッグ] > [デバッグの開始] メニュー

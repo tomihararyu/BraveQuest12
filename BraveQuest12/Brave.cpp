@@ -4,10 +4,7 @@ using namespace std;
 
 Brave::Brave() : Character("勇者")
 {
-
-}
-Brave::Brave(const char* name):Character(name)
-{
+	cout << "呼ばれた" << endl;
 	state[HP] = 30;
 	state[NP] = 19;
 	state[POW] = 15;
@@ -19,6 +16,11 @@ Brave::Brave(const char* name):Character(name)
 	SkillCheck[HOIM] = true;
 	SkillCheck[DEIN] = true;
 
+	SkillConstructorLook();
+}
+Brave::Brave(const char* name):Character(name)
+{
+	cout << "呼ばれた" << endl;
 }
 Brave::~Brave()
 {
@@ -29,12 +31,9 @@ int Brave::attac()
 {
 	cout << endl;
 	cout <<_pName<<"の行動を選択してください。　>" ;
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i <= skillMAXnum; i++)
 	{
-		if (SkillCheck[i] == true)
-		{
-			cout << i + 1 << "=" << skillCharNam[i] << ":NP=" << skillChar[i] << "   ";
-		}
+			cout << i + 1 << "=" << skillCharNam[SkillProcess[i]] << ":NP=" << skillCharNP[SkillProcess[i]] << "   ";
 	}
 	cout << endl << "cin>>";
 	int getdm = 0;;
@@ -43,24 +42,27 @@ int Brave::attac()
 		int timp;
 		cin >> timp;
 		cout << endl;
-		if (timp-1 ==TAIATARI)
+		bool check = false;
+		for (int i = 0; i <= skillMAXnum; i++)
 		{
-			getdm = taiatari();
-			 break;
+			if (timp == i + 1)
+			{
+				getdm = skillPush[SkillProcess[timp]];
+				check = true;
+			}
 		}
-		else if(timp-1==HOIM)
+		if (true == check)
 		{
-			hoimi();
 			break;
 		}
-		else if(timp-1==DEIN)
+		else if (false == check)
 		{
-			getdm = dein();
-			break;
+			cout << "番号が不一致です。" << endl;
+			continue;
 		}
 		else
 		{
-			cout << "間違った番号を指定しています" << endl;
+			cout << "バグが発生" << endl;
 		}
 	}
 	return getdm;

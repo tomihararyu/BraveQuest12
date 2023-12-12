@@ -4,6 +4,7 @@ using namespace std;
 
 Zombie::Zombie() : Character("ƒ]ƒ“ƒr")
 {
+	cout << "ŒÄ‚Î‚ê‚½" << endl;
 	state[HP] = (rand() % 11) + 50;
 	state[NP] = (rand() % 6) +5;
 	state[POW] = (rand() % 6) + 5;
@@ -14,6 +15,8 @@ Zombie::Zombie() : Character("ƒ]ƒ“ƒr")
 	SkillCheck[TAIATARI] = true;
 	SkillCheck[HANER] = true;
 	SkillCheck[POIZN] = true;
+	
+	SkillConstructorLook();
 }
 
 Zombie::Zombie(const char* name) : Character(name)
@@ -27,25 +30,9 @@ Zombie::~Zombie()
 }
 int Zombie::attac()
 {
-	int move = rand() % 3;
+	int move = rand() % skillMAXnum;
 	int timp=0;
-	if (move + 1 == 1)
-	{
-		timp = taiatari();
-	}
-	else if(move+1 == 2)
-	{
-		haner();
-	}
-	else if(move+1 == 3)
-	{
-		timp = poison();
-	}
-	else
-	{
-		cout << "—áŠO‚ª”­¶" << endl;
-	}
+	timp = skillPush[SkillProcess[move]];
 	cout << "====================" << endl;
 	return timp;
-
 }

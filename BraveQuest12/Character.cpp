@@ -7,16 +7,43 @@ using namespace std;
 
 
 Character::Character(const char* pName) {
+	cout << "呼ばれた" << endl;
 	_pName = new char[strlen(pName) + 1];
 	strcpy(_pName, pName);
 }
-
 Character::~Character()
 {
 	if (_pName != nullptr)
 	{
 		delete _pName;
 		_pName = nullptr;
+	}
+	if (SkillProcess != nullptr)
+	{
+		delete SkillProcess;
+		SkillProcess = nullptr;
+	}
+}
+void Character::SkillConstructorLook()
+{
+	int timp = 0;
+	for (int i = 0; i < 5; i++)
+	{
+		if (SkillCheck[i] == true)
+		{
+			timp++;
+		}
+	}
+	skillMAXnum = timp;
+	SkillProcess = new int[skillMAXnum];
+	int j = 0;
+	for (int i = 0; i < 5; i++)
+	{
+		if (SkillCheck[i] == true)
+		{
+			SkillProcess[j] = SkillCheck[i];
+			j++;
+		}
 	}
 }
 const char* Character::getName() const
@@ -44,30 +71,32 @@ int Character::taiatari()
 	return 6 + state[POW];
 	
 }
-void Character::hoimi()
+int Character::hoimi()
 {
 	state[HP] += 2 * state[INT] / 10;
-	state[NP] -= skillChar[HOIM];
+	state[NP] -= skillCharNP[HOIM];
 	cout << _pName <<"の回復!!" << endl;
 	cout << _pName <<"の" << stateNam[HP] << "が" << 2 * state[INT] / 10 << "回復した" << endl;
+	return 0;
 }
-void Character::haner()
+int Character::haner()
 {
 	cout << _pName << "の跳ねる!!" << endl;
 
 	cout << _pName <<"は元気に跳ねている!!!" << endl;
+	return 0;
 }
 int Character::poison()
 {
 	cout << _pName <<"の毒霧!!\n毒霧を吐いた"<<endl;
-	state[NP] -= skillChar[POIZN];
+	state[NP] -= skillCharNP[POIZN];
 	return 23;
 
 }
 int Character::dein()
 {
 	cout << _pName <<"のデイン!!" << endl;
-	state[NP] -= skillChar[DEIN];
+	state[NP] -= skillCharNP[DEIN];
 	return 10 + state[INT];
 
 }
@@ -95,4 +124,32 @@ void Character::SubStateOpen()
 	}
 	cout << "\n====================" << endl;
 }
+void Character::ChangeName()
+{
+	char* TimpName;
+	TimpName = new char[50];
+	cout << "変更前の名前 >" << _pName << endl << endl;
+	cout << "変更後の名前 >";
+	for (;;)
+	{
+		cin >> TimpName;
+		int timp;
+		cout << TimpName << "で良いですか？ 決定=1 　もう一度=1以外" << endl;
+		cout << ">";
+		cin >> timp;
+		if (timp == 1)
+		{
+			break;
+		}
+	}
+	delete _pName;
+
+	_pName = new char[strlen(TimpName)+1];
+	_pName = TimpName;
+
+	cout << "名前が『" << _pName << "』になりました。" << endl;
+	
+
+}
+
 
