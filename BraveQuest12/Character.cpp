@@ -9,11 +9,14 @@ using namespace std;
 Character::Character(const char* pName) {
 	_pName = new char[strlen(pName) + 1];
 	strcpy(_pName, pName);
+
 	Skillpul[0] = &Character::taiatari;
 	Skillpul[1] = &Character::hoimi;
 	Skillpul[2] = &Character::haner;
 	Skillpul[3] = &Character::poison;
 	Skillpul[4] = &Character::dein;
+
+
 }
 Character::~Character()
 {
@@ -38,7 +41,9 @@ void Character::SkillConstructorLook()
 			timp++;
 		}
 	}
+
 	skillMAXnum = timp;
+
 	SkillProcess = new int[skillMAXnum];
 	int j = 0;
 	for (int i = 0; i < 5; i++)
@@ -50,7 +55,7 @@ void Character::SkillConstructorLook()
 		}
 	}
 }
-const char* Character::getName() const
+const char* Character::getName() 
 {
 	return _pName;
 }

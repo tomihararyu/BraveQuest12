@@ -34,12 +34,12 @@ int Brave::attac()
 	{
 			cout << i + 1 << "=" << skillCharNam[SkillProcess[i]] << ":NP=" << skillCharNP[SkillProcess[i]] << "   ";
 	}
-	cout << endl << "cin>>";
 	int timp;
 	for (;;)
 	{
+		cout << endl << "cin>>";
 		cin >> timp;
-		if (timp < 0)
+		if (timp <= 0)
 		{
 			cout << "もう一度入力してください。" << endl;
 		}
@@ -52,7 +52,7 @@ int Brave::attac()
 			cout << "もう一度入力してください。" << endl;
 		}
 	}
-	int dm= (this->*Skillpul[SkillProcess[timp-1]])();
+	int dm = (this->*Skillpul[SkillProcess[timp-1]])();//thisってなんだよ//隠し引数らしい
 	return dm;
 
 }
