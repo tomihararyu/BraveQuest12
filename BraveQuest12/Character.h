@@ -24,7 +24,7 @@ protected:
 	int haner();
 	int poison();
 	int dein();
-	int skillPush[5] = { taiatari(),hoimi(),haner(),poison(),dein() };
+	int (Character::* Skillpul[5])(); // メンバー変数として配列を宣言// https://www7b.biglobe.ne.jp/~robe/cpphtml/html03/cpp03057.html //を参考に作りました
 protected:
 
 	const char* skillCharNam[5] = { "体当たり","ホイミ","跳ねる","毒霧","デイソ" };//全キャラ共通のスキル

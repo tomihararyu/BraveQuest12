@@ -4,7 +4,10 @@ using namespace std;
 
 Brave::Brave() : Character("勇者")
 {
-	cout << "呼ばれた" << endl;
+	
+}
+Brave::Brave(const char* name):Character(name)
+{
 	state[HP] = 30;
 	state[NP] = 19;
 	state[POW] = 15;
@@ -15,12 +18,8 @@ Brave::Brave() : Character("勇者")
 	SkillCheck[TAIATARI] = true;
 	SkillCheck[HOIM] = true;
 	SkillCheck[DEIN] = true;
-
 	SkillConstructorLook();
-}
-Brave::Brave(const char* name):Character(name)
-{
-	cout << "呼ばれた" << endl;
+	
 }
 Brave::~Brave()
 {
@@ -31,42 +30,29 @@ int Brave::attac()
 {
 	cout << endl;
 	cout <<_pName<<"の行動を選択してください。　>" ;
-	for (int i = 0; i <= skillMAXnum; i++)
+	for (int i = 0; i < skillMAXnum; i++)
 	{
 			cout << i + 1 << "=" << skillCharNam[SkillProcess[i]] << ":NP=" << skillCharNP[SkillProcess[i]] << "   ";
 	}
 	cout << endl << "cin>>";
-	int getdm = 0;;
+	int timp;
 	for (;;)
 	{
-		int timp;
 		cin >> timp;
-		cout << endl;
-		bool check = false;
-		for (int i = 0; i <= skillMAXnum; i++)
+		if (timp < 0)
 		{
-			if (timp == i + 1)
-			{
-				getdm = skillPush[SkillProcess[timp]];
-				check = true;
-			}
+			cout << "もう一度入力してください。" << endl;
 		}
-		if (true == check)
+		else if (timp <= skillMAXnum)
 		{
 			break;
 		}
-		else if (false == check)
-		{
-			cout << "番号が不一致です。" << endl;
-			continue;
-		}
 		else
 		{
-			cout << "バグが発生" << endl;
+			cout << "もう一度入力してください。" << endl;
 		}
 	}
-	return getdm;
-	
-	
+	int dm= (this->*Skillpul[SkillProcess[timp-1]])();
+	return dm;
 
 }

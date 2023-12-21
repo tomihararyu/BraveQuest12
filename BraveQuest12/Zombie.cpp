@@ -4,7 +4,7 @@ using namespace std;
 
 Zombie::Zombie() : Character("ƒ]ƒ“ƒr")
 {
-	cout << "ŒÄ‚Î‚ê‚½" << endl;
+	cout << "ŒÄ‚Î‚ê‚½1Z" << endl;
 	state[HP] = (rand() % 11) + 50;
 	state[NP] = (rand() % 6) +5;
 	state[POW] = (rand() % 6) + 5;
@@ -21,8 +21,7 @@ Zombie::Zombie() : Character("ƒ]ƒ“ƒr")
 
 Zombie::Zombie(const char* name) : Character(name)
 {
-
-
+	cout << "ŒÄ‚Î‚ê‚½2Z" << endl;
 }
 Zombie::~Zombie()
 {
@@ -31,8 +30,6 @@ Zombie::~Zombie()
 int Zombie::attac()
 {
 	int move = rand() % skillMAXnum;
-	int timp=0;
-	timp = skillPush[SkillProcess[move]];
 	cout << "====================" << endl;
-	return timp;
+	return (this->*Skillpul[SkillProcess[move]])();;
 }

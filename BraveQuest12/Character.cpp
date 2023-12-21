@@ -7,9 +7,13 @@ using namespace std;
 
 
 Character::Character(const char* pName) {
-	cout << "�Ă΂ꂽ" << endl;
 	_pName = new char[strlen(pName) + 1];
 	strcpy(_pName, pName);
+	Skillpul[0] = &Character::taiatari;
+	Skillpul[1] = &Character::hoimi;
+	Skillpul[2] = &Character::haner;
+	Skillpul[3] = &Character::poison;
+	Skillpul[4] = &Character::dein;
 }
 Character::~Character()
 {
@@ -41,7 +45,7 @@ void Character::SkillConstructorLook()
 	{
 		if (SkillCheck[i] == true)
 		{
-			SkillProcess[j] = SkillCheck[i];
+			SkillProcess[j] = i;
 			j++;
 		}
 	}

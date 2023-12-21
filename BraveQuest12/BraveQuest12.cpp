@@ -19,9 +19,9 @@ int main()
 {
 	srand((unsigned int)time(nullptr));
 
+	Brave brave(nameGet());
 	Zombie* pzombie;//ここで宣言するのは確定で出現させるモンスターのみ。battle関数内で他のモンスターを確率によって増やしてclassを生成
 	pzombie = new Zombie;
-	Brave brave(nameGet());
 
 	
 	Battle battle;
