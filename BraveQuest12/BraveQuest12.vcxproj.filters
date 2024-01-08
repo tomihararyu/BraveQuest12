@@ -45,6 +45,9 @@
     <ClCompile Include="Zombie.cpp">
       <Filter>ソース ファイル\char.cpp.f</Filter>
     </ClCompile>
+    <ClCompile Include="TeamMember.cpp">
+      <Filter>ソース ファイル\char.cpp.f</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle.h">
@@ -66,6 +69,12 @@
       <Filter>ヘッダー ファイル\char.h.f</Filter>
     </ClInclude>
     <ClInclude Include="enemy.h">
+      <Filter>ヘッダー ファイル\char.h.f</Filter>
+    </ClInclude>
+    <ClInclude Include="Slime.h">
+      <Filter>ヘッダー ファイル\char.h.f</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamMember.h">
       <Filter>ヘッダー ファイル\char.h.f</Filter>
     </ClInclude>
   </ItemGroup>

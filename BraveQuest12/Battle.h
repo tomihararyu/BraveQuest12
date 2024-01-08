@@ -1,9 +1,9 @@
 #pragma once
-#include"brave.h"
-#include"Zombie.h"
+#include"TeamMember.h"
+#include"enemy.h"
 class Battle
 {
 public:
-	void battleStart(Brave& bave, Zombie* pzombe);
+	void battleStart(TeamMember* brave[], Enemy* enemy[], int Enam,int Pnum);
 
 };

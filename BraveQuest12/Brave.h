@@ -1,12 +1,10 @@
 #pragma once
-#include"Character.h"
-class Brave :public Character
+#include"TeamMember.h"
+class Brave :public TeamMember
 {
 public:
 	Brave();
 	Brave(const char* name);//コンストラクタでステータスを追加。
 	virtual ~Brave();
-public:
-	int attac();
 
 };

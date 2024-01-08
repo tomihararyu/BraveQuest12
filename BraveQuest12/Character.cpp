@@ -1,6 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <algorithm>
+#include <iomanip>
+#include <windows.h>
 
 #include"Character.h"
 using namespace std;
@@ -10,11 +12,11 @@ Character::Character(const char* pName) {
 	_pName = new char[strlen(pName) + 1];
 	strcpy(_pName, pName);
 
-	Skillpul[0] = &Character::taiatari;
-	Skillpul[1] = &Character::hoimi;
-	Skillpul[2] = &Character::haner;
-	Skillpul[3] = &Character::poison;
-	Skillpul[4] = &Character::dein;
+	Skillpul[TAIATARI] = &Character::taiatari;
+	Skillpul[HOIM] = &Character::hoimi;
+	Skillpul[HANER] = &Character::haner;
+	Skillpul[POIZN] = &Character::poison;
+	Skillpul[DEIN] = &Character::dein;
 
 
 }
@@ -34,7 +36,7 @@ Character::~Character()
 void Character::SkillConstructorLook()
 {
 	int timp = 0;
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < SKILLNUM; i++)
 	{
 		if (SkillCheck[i] == true)
 		{
@@ -59,18 +61,48 @@ const char* Character::getName()
 {
 	return _pName;
 }
+int Character::attack()
+{
+	cout << "親" << endl;
+	return 0;
+}
 void Character::DamageTrade(int Damege)
 {
 	if (Damege != 0)
 	{
-		const int timp = (Damege - state[DF]) + rand() % 3;
-		cout <<timp << " ダメージ!!  "<<_pName <<"のHPが" << state[HP] << "が"<<timp<<"減って"<<state[HP]-timp<<"になった" << endl;
-		state[HP] -= timp;
+		int timp = (Damege - state[DF]) + rand() % 3;
+		if (timp <= 0)
+		{
+			timp = 0;
+		}
+
+		if (state[HP] - timp <= 0)
+		{
+			state[HP] = 0;
+		}
+		else
+		{
+			state[HP] -= timp;
+		}
+
+		if (state[HP] != 0)
+		{
+			cout << timp << " ダメージ!!  " << _pName << "のHPが" << state[HP] << "になった" << endl;
+		}
+		else
+		{
+
+		}
+
 	}
 	
 }
 int Character::SpeedCheck()
 {
+	if (state[NP] < 0)
+	{
+		state[NP] = 0;
+	}
 	return state[DEX] ;
 }
 int Character::taiatari()
@@ -113,21 +145,15 @@ int Character::GetHP()
 {
 	return state[HP];
 }
+int Character::NPGet()
+{
+	return state[NP];
+}
 void Character::AllstateOpen()
 {
 	cout << "====================" << endl;
 	cout << _pName<<":: ";
 	for (int i = 0; i <= 5; i++)
-	{
-		cout << stateNam[i] << "=" << state[i] << " ";
-	}
-	cout << "\n====================" << endl;
-}
-void Character::SubStateOpen()
-{
-	cout << "====================" << endl;
-	cout << _pName << ":: ";
-	for (int i = 0; i <= 1; i++)
 	{
 		cout << stateNam[i] << "=" << state[i] << " ";
 	}
@@ -159,6 +185,28 @@ void Character::ChangeName()
 	cout << "名前が『" << _pName << "』になりました。" << endl;
 	
 
+}
+//void Character::deathjud()
+//{
+//	if (state[HP] <= 0)
+//	{
+//		deathbool = true;
+//	}
+//}
+//int Character::deathInt()
+//{
+//	return deathbool;
+//}
+bool Character::HPbool(int num)
+{
+	if (num <= 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 

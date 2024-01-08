@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include"Battle.h"
+#include"TeamMember.h"
 #include"Brave.h"
 #include"Zombie.h"
+#include"Slime.h"
 using namespace std;
 char* nameGet()
 {
@@ -19,15 +21,30 @@ int main()
 {
 	srand((unsigned int)time(nullptr));
 
-	Brave brave(nameGet());
-	Zombie* pzombie;//ここで宣言するのは確定で出現させるモンスターのみ。battle関数内で他のモンスターを確率によって増やしてclassを生成
-	pzombie = new Zombie;
-
+	TeamMember* brave[] = { new Brave(nameGet()),new Brave("勇者2") };
+	const int Pnum = sizeof(brave) / sizeof(TeamMember*);
 	
-	Battle battle;
-	battle.battleStart(brave, pzombie);//出現させるモンスターの数は送ってもいいかも
+	Enemy* enemy[] = { new Zombie("ゾンビ1"),new Zombie("ゾンビ2"),new Slime("スライム1"),new Slime("スライム2") };
+	const int Enum = sizeof(enemy) / sizeof(Enemy*);
 
-	delete pzombie;
+	Battle battle;
+
+	battle.battleStart(brave, enemy,Enum,Pnum);
+
+	for (int i = 0; i < Enum; i++)
+	{
+		if (enemy[i] != nullptr)
+		{
+			delete enemy[i];
+		}
+	}
+	for (int i = 0; i < Pnum; i++)
+	{
+		if (brave[i] != nullptr)
+		{
+			delete brave[i];
+		}
+	}
 	
 }
 //次にやることリスト

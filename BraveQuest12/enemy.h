@@ -1,6 +1,9 @@
-//#pragma once
-//#include"Character.h"
-//class Enemy :public Character
-//{
-//
-//};
+#pragma once
+#include"Character.h"
+class Enemy :public Character
+{
+public:
+	Enemy(const char* pName);
+public:
+	int attack()override;
+};
